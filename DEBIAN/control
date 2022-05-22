@@ -1,0 +1,5 @@
+Package: wg-health
+Version: 0.1
+Maintainer: Kenton Appanaitis
+Architecture: all
+Description: Webserver to report if wireguard is running

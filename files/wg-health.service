@@ -1,0 +1,13 @@
+[Unit]
+After=network-online.target
+Description=Wireguard health check server
+Requires=wg-quick@wg0.service
+DefaultDependencies=no
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/wg-health
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
