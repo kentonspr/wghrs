@@ -1,1 +1,8 @@
+#!/bin/bash
+
+if [  ! -f /etc/wghrs/config.toml ]
+then
+   cp /etc/wghrs/default-config.toml /etc/wghrs/config.toml
+fi
+
 systemctl enable wghrs

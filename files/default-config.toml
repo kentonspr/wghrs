@@ -1,0 +1,4 @@
+[default]
+# Default is listening on all interfaces. Change this.
+address: "0.0.0.0"
+port: 8000
