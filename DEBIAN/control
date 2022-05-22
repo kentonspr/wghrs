@@ -1,5 +1,5 @@
 Package: wghrs
 Version: 0.1
-Maintainer: Kenton Appanaitis
+Maintainer: Kenton Appanaitis <kappanaitis@gmail.com>
 Architecture: all
 Description: Webserver to report if wireguard is running. Written in Rust.
