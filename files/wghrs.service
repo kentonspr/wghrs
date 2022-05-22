@@ -7,7 +7,6 @@ DefaultDependencies=no
 Type=simple
 Environment="ROCKET_CONFIG=/etc/wghrs/config.toml"
 ExecStart=/usr/local/sbin/wghrs
-PIDFile=/var/run/wghrs.pid
 KillMode=process
 Restart=on-failure
 
