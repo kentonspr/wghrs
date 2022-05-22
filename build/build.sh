@@ -1,10 +1,22 @@
-mkdir -p /tmp/wg-health/usr/local/sbin
-mkdir -p /tmp/wg-health/etc/wg-health
-mkdir -p /tmp/wg-health/etc/systemd/system
+CWD="$(dirname $(pwd))"
 
-cp ./wg-health/target/release/wg-health /tmp/wg-health/usr/local/sbin/
-cp ./wg-health/files/Rocket.toml /tmp/wg-health/etc/wg-health/
-cp ./wg-health/files/wg-health.service /tmp/wg-health/etc/systemd/system/
-cp -r ./wg-health/DEBIAN /tmp/wg-health/
+# https://stackoverflow.com/a/4774063
+# Change directory into the directory where this script resides
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+cd $SCRIPTPATH
 
-dpkg-deb --build /tmp/wg-health
+TIME="$(date +"%Y-%m-%dT%H:%M:%S%Z")"
+
+mkdir -p /tmp/wghrs-$TIME/usr/local/sbin
+mkdir -p /tmp/wghrs-$TIME/etc/wg-health
+mkdir -p /tmp/wghrs-$TIME/etc/systemd/system
+
+cp ../target/release/wghrs /tmp/wghrs-$TIME/usr/local/sbin/
+cp ../files/Rocket.toml /tmp/wghrs-$TIME/etc/wghrs/
+cp ../files/wghrs.service /tmp/wghrs-$TIME/etc/systemd/system/
+cp -r ../DEBIAN /tmp/wghrs-$TIME/
+
+dpkg-deb --build /tmp/wghrs-$TIME
+
+mv /tmp/wghrs.deb $CWD
+rm -rf /tmp/wghrs-$TIME

@@ -1,9 +1,13 @@
 #[macro_use]
 extern crate rocket;
+extern crate daemonize;
+use daemonize::Daemonize;
 use std::process::Command;
 
 #[get("/")]
 fn index() -> String {
+    # TODO - Simple check to see if the servicice is active.
+    # Could be expanded for more options
     let output = Command::new("systemctl")
         .args(["is-active", "wg-quick@wg0"])
         .output()
@@ -15,6 +19,22 @@ fn index() -> String {
 
 #[launch]
 fn rocket() -> _ {
+    # https://docs.rs/daemonize/latest/daemonize
+    let daemonize = Daemonize::new()
+        .pid_file("/var/run/wghrs.pid")
+        .chown_pid_file(true)
+        .working_directory("/")
+        .user("nobody")
+        .group("daemon")
+        .umask(0o027)
+        .stdout(Stdio::inherit())
+        .stderr(Stdio::inherit());
+
+    match daemonize.start() {
+        Ok(_) => println!("Success, daemonized"),
+        Err(e) => eprintln!("Error, {}", e),
+    }
+
     rocket::build().mount("/", routes![index])
 }
 

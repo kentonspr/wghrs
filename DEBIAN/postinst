@@ -1,1 +1,1 @@
-systemctl enable wg-health
+systemctl enable wghrs

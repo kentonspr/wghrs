@@ -1,12 +1,12 @@
 [Unit]
 After=network-online.target
 Description=Wireguard health check server
-Requires=wg-quick@wg0.service
 DefaultDependencies=no
 
 [Service]
 Type=simple
-ExecStart=/usr/local/sbin/wg-health
+Environment="ROCKET_CONFIG=/etc/wghrs/config.toml"
+ExecStart=/usr/local/sbin/wghrs
 Restart=on-failure
 
 [Install]
