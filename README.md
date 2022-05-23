@@ -14,10 +14,10 @@ cargo build --release
 
 ## Build `.deb` Package
 
-Repo includes everything needed to build a `.deb` file for installation to Debian/Ubuntu systems. Run the `builddeb.sh` script - 
+Repo includes everything needed to build a `.deb` file for installation to Debian/Ubuntu systems. Run the `build-deb.sh` script - 
 
 ```
-build/builddeb.sh
+build/build-deb.sh
 ```
 
 When the build is complete, a `wghrs.deb` file should be in your working directory. This can be installed with apt or uploaded to a repo for later installation.
