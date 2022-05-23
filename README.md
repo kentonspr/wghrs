@@ -6,13 +6,13 @@ This is a simple HTTP server to return the output of `systemctl is-actice wg-qui
 
 This is a Rust program and requires Rust build tools - https://www.rust-lang.org/tools/install
 
-When you have a Rust environment in place, navigate to the repo root and build a release version with carg - 
+When you have a Rust environment in place, navigate to the repo root and build a release version with cargo - 
 
 ```
 cargo build --release
 ```
 
-## Build `.deb`
+## Build `.deb` Package
 
 Repo includes everything needed to build a `.deb` file for installation to Debian/Ubuntu systems. Run the `builddeb.sh` script - 
 
